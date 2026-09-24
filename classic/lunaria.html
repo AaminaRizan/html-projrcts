@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunaria — Your glow begins here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#4A3F38;
+    --ink-soft:#8A7C71;
+    --dusk:#9BB0B3;
+    --dusk-deep:#EAF0EF;
+    --clay:#E3A683;
+    --clay-deep:#D18F6C;
+    --stone:#F7F1EA;
+    --moss:#B7C4AC;
+    --pearl:#FDFBF7;
+    --blush:#F4DED2;
+    --line: rgba(74,63,56,0.08);
+    --r-lg: 36px;
+    --r-md: 22px;
+    --r-sm: 14px;
+    --r-pill: 999px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pearl);
+    color:var(--ink);
+    font-family:'Figtree', sans-serif;
+    overflow-x:hidden;
+  }
+  .display{font-family:'Instrument Serif', serif; font-style:italic; font-weight:400;}
+  a{color:inherit;}
+  img,svg{display:block;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* NAV */
+  nav{
+    position:absolute; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:30px 48px;
+  }
+  .wordmark{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--pearl);
+  }
+  .nav-links{display:flex; align-items:center; gap:30px; font-size:1.05rem; letter-spacing:0.02em; color:var(--pearl);}
+  .nav-links a{text-decoration:none; opacity:0.9; transition:opacity 0.2s;}
+  .nav-links a:hover, .nav-links a:focus-visible{opacity:1;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--clay-deep); outline-offset:3px;}
+  .nav-book{
+    background:rgba(253,251,247,0.16);
+    border:1px solid rgba(253,251,247,0.4);
+    padding:11px 22px;
+    border-radius:var(--r-pill);
+    backdrop-filter:blur(6px);
+    transition:background 0.2s, border-color 0.2s;
+  }
+  .nav-book:hover{background:rgba(253,251,247,0.28);}
+
+  /* HERO */
+  .hero-frame{
+    position:relative;
+    padding:32px;
+    border-radius:calc(var(--r-lg) + 22px);
+    overflow:hidden;
+  }
+  .hero-frame::before{
+    content:'';
+    position:absolute;
+    inset:-12%;
+    background-image:url('breeze.png');
+    background-size:cover;
+    background-position:center 20%;
+    filter:blur(70px) saturate(1.2) brightness(0.9);
+    transform:scale(1.15);
+    z-index:0;
+  }
+  .hero{
+    position:relative;
+    z-index:1;
+    min-height:88vh;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    border-radius:var(--r-lg);
+    box-shadow:0 30px 70px -20px rgba(20,16,12,0.35);
+    background:
+      radial-gradient(ellipse 60% 50% at 28% 12%, rgba(227,166,131,0.4), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 78% 92%, rgba(183,196,172,0.3), transparent 65%),
+      linear-gradient(160deg, #B7C7C9 0%, #93A7AA 32%, #71898D 62%, #566E72 100%);
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-glow{
+    position:absolute;
+    top:-8%; right:-6%;
+    width:600px; height:600px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, rgba(253,251,247,0.6), rgba(227,166,131,0.25) 45%, transparent 72%);
+    filter: blur(10px);
+    opacity:0.9;
+    z-index:1;
+  }
+  .hero-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 20%;
+    z-index:0;
+  }
+  .hero-scrim{
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(0deg, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.15) 32%, transparent 55%),
+      linear-gradient(180deg, rgba(20,16,12,0.35) 0%, transparent 22%);
+    z-index:1;
+    pointer-events:none;
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:0 44px 50px;
+    max-width:1500px;
+    margin:0 auto;
+  }
+  .hero-kicker{
+    color:var(--pearl);
+    font-size:1.05rem;
+    margin-bottom:18px;
+    font-weight:400;
+  }
+  .hero-kicker .book-link{
+    display:inline-block;
+    margin-left:6px;
+    text-decoration:underline;
+    text-decoration-color:rgba(253,251,247,0.55);
+    text-underline-offset:4px;
+    font-weight:600;
+    font-size:0.98rem;
+  }
+  .hero-headline{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    line-height:0.9;
+  }
+  .hero-headline .display{
+    font-size:clamp(3.6rem, 12vw, 9.5rem);
+    color:var(--pearl);
+    letter-spacing:0;
+  }
+  .eclipse{
+    width:clamp(46px, 7vw, 96px);
+    height:clamp(46px, 7vw, 96px);
+    margin:0 clamp(4px, 1vw, 14px);
+    position:relative;
+    flex-shrink:0;
+    align-self:center;
+  }
+  .eclipse svg{width:100%; height:100%;}
+
+  /* SECTIONS */
+  section{
+    padding:120px 48px;
+    max-width:1440px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--clay-deep); margin-bottom:14px; display:block; font-weight:600;
+  }
+  .section-head{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:40px;
+    margin-bottom:60px;
+  }
+  h2.display{
+    font-size:clamp(2.1rem, 3.8vw, 3.4rem);
+    line-height:1.12;
+    color:var(--ink);
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    font-size:1.08rem;
+    line-height:1.75;
+    align-self:end;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .about-card{
+    background:var(--stone);
+    border-radius:var(--r-md);
+    padding:38px 32px;
+  }
+  .about-card .phase{ margin-bottom:22px; width:34px; height:34px; }
+  .about-card h3{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    font-weight:400;
+    margin-bottom:12px;
+  }
+  .about-card p{
+    color:var(--ink-soft);
+    font-size:0.98rem;
+    line-height:1.7;
+  }
+
+  /* SERVICES */
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+  }
+  .service-card{
+    background:var(--pearl);
+    border:1px solid var(--line);
+    border-radius:var(--r-md);
+    padding:34px 26px;
+    transition:background 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-card:hover{
+    background:var(--blush);
+    transform:translateY(-4px);
+    box-shadow:0 16px 34px rgba(74,63,56,0.08);
+  }
+  .service-card .dot{
+    width:12px; height:12px; border-radius:50%;
+    background:var(--clay);
+    margin-bottom:24px;
+  }
+  .service-card h3{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    font-weight:400;
+    margin-bottom:8px;
+  }
+  .service-card .price{
+    color:var(--clay-deep);
+    font-size:0.82rem;
+    display:block;
+    margin-bottom:16px;
+    font-weight:600;
+  }
+  .service-card p{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    line-height:1.65;
+  }
+
+  /* RITUAL */
+  .ritual{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+  }
+  .ritual-step{
+    background:var(--stone);
+    border-radius:var(--r-md);
+    padding:30px 26px;
+  }
+  .ritual-step .phase-icon{
+    width:36px; height:36px;
+    margin-bottom:22px;
+    border-radius:50%;
+  }
+  .ritual-step h4{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    font-weight:400;
+    margin-bottom:10px;
+  }
+  .ritual-step p{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    line-height:1.65;
+  }
+
+  /* PRESS */
+  .press-strip{
+    display:flex;
+    gap:24px;
+    overflow-x:auto;
+  }
+  .press-quote{
+    min-width:320px;
+    flex:1;
+    background:var(--stone);
+    border-radius:var(--r-md);
+    padding:34px 30px;
+  }
+  .press-quote p{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    line-height:1.5;
+    color:var(--ink);
+    margin-bottom:18px;
+  }
+  .press-quote span{
+    font-size:0.8rem; letter-spacing:0.03em; color:var(--ink-soft);
+  }
+
+  /* CTA */
+  .cta-wrap{ padding:0 48px 48px; max-width:1440px; margin:0 auto; }
+  .cta-section{
+    text-align:center;
+    padding:120px 48px;
+    background:linear-gradient(160deg, #93A7AA, #71898D);
+    color:var(--pearl);
+    border-radius:var(--r-lg);
+  }
+  .cta-section h2{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:clamp(2.2rem, 5vw, 3.6rem);
+    max-width:15ch;
+    margin:0 auto 34px;
+    line-height:1.18;
+    font-weight:400;
+  }
+  .btn{
+    display:inline-block;
+    padding:17px 34px;
+    background:var(--pearl);
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+    font-weight:600;
+    border:none;
+    border-radius:var(--r-pill);
+    cursor:pointer;
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .btn:hover{transform:translateY(-2px); background:var(--blush);}
+
+  footer{
+    padding:44px 48px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1440px;
+    margin:0 auto;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  footer .foot-links{display:flex; gap:26px;}
+  footer a{text-decoration:none; opacity:0.9;}
+  footer a:hover{opacity:1; color:var(--clay-deep);}
+
+  @media (max-width: 900px){
+    nav{padding:20px 22px;}
+    .nav-links{display:none;}
+    .hero-frame{padding:16px;}
+    .hero-content{padding:0 22px 36px;}
+    section{padding:70px 22px;}
+    .section-head{grid-template-columns:1fr; gap:18px;}
+    .about-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:1fr 1fr;}
+    .ritual{grid-template-columns:1fr 1fr;}
+    .cta-wrap{padding:0 16px 16px;}
+    .cta-section{padding:80px 22px;}
+    footer{flex-direction:column; gap:14px; text-align:center; padding:36px 22px 48px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-frame">
+<section class="hero" id="top">
+  <img class="hero-photo" src="breeze.png" alt="" onerror="this.style.display='none'">
+  <div class="hero-glow"></div>
+  <div class="hero-scrim"></div>
+  <nav>
+    <a href="lunaria.html" class="wordmark" style="text-decoration:none;">Lunaria</a>
+    <div class="nav-links">
+      <a href="#top">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contacts</a>
+      <a href="#contact" class="nav-book">Book an Appointment</a>
+    </div>
+  </nav>
+  <div class="hero-content">
+    <div class="hero-kicker">Your glow begins here. Welcome to Lunaria.
+      <a href="#contact" class="book-link">Book an Appointment</a>
+    </div>
+    <div class="hero-headline">
+      <span class="display">Glow</span>
+      <span class="eclipse" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="38" cy="50" r="34" fill="#FDFBF7"/>
+          <circle cx="62" cy="50" r="34" fill="#E3A683"/>
+        </svg>
+      </span>
+      <span class="display">Studio</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="about">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">About us</span>
+      <h2 class="display">Beauty, on a slower cycle.</h2>
+    </div>
+    <p>"Lunaria" is named for the plant whose seed pods turn silvery and translucent as they dry — beauty that reveals itself gradually. We treat skin the same way: not as something to fix overnight, but something to tend, phase by phase.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <svg class="phase" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#E3A683" stroke-width="2"/></svg>
+      <h3>Unhurried by design</h3>
+      <p>No sixty-minute miracle facials. Our sessions run long because skin needs time to actually respond to a treatment, not just absorb it.</p>
+    </div>
+    <div class="about-card">
+      <svg class="phase" viewBox="0 0 40 40"><path d="M20 3a17 17 0 000 34 12 12 0 010-34z" fill="#E3A683"/></svg>
+      <h3>Formulated in-house</h3>
+      <p>Our serums and masks are mixed in small batches at the studio, adjusted to the season and to what your skin is doing that week.</p>
+    </div>
+    <div class="about-card">
+      <svg class="phase" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#E3A683"/></svg>
+      <h3>Read before treated</h3>
+      <p>Every visit opens with a real skin reading under proper light — not a rushed glance — before we decide what the day's treatment should be.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Services</span>
+      <h2 class="display">Treatments, not transactions.</h2>
+    </div>
+    <p>Each service is built around one outcome, not a menu of add-ons.</p>
+  </div>
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="dot"></div>
+      <h3>The Reveal Facial</h3>
+      <span class="price">75 min · LKR 12,500</span>
+      <p>Deep cleanse, enzyme exfoliation, and a cold jade sculpt to close the session.</p>
+    </div>
+    <div class="service-card">
+      <div class="dot"></div>
+      <h3>Dermaplane &amp; Glow</h3>
+      <span class="price">45 min · LKR 9,000</span>
+      <p>Manual exfoliation followed by a vitamin C infusion for immediate brightness.</p>
+    </div>
+    <div class="service-card">
+      <div class="dot"></div>
+      <h3>Brow &amp; Lash Studio</h3>
+      <span class="price">30 min · LKR 4,500</span>
+      <p>Shaping and tinting suited to your natural growth pattern, not a template shape.</p>
+    </div>
+    <div class="service-card">
+      <div class="dot"></div>
+      <h3>The Long Reset</h3>
+      <span class="price">120 min · LKR 21,000</span>
+      <p>Our full ritual — facial, scalp massage, and a take-home care plan for the following month.</p>
+    </div>
+  </div>
+</section>
+
+<section id="journal">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">The ritual</span>
+      <h2 class="display">One appointment, four phases.</h2>
+    </div>
+    <p>Every full treatment at Lunaria moves through the same arc — like the moon does.</p>
+  </div>
+  <div class="ritual">
+    <div class="ritual-step">
+      <svg class="phase-icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#4A3F38" stroke-width="1.5"/></svg>
+      <h4>Read</h4>
+      <p>We start in proper light, no makeup, no assumptions — just what your skin is actually doing today.</p>
+    </div>
+    <div class="ritual-step">
+      <svg class="phase-icon" viewBox="0 0 40 40"><path d="M20 4a16 16 0 000 32 11 11 0 010-32z" fill="#4A3F38"/></svg>
+      <h4>Clear</h4>
+      <p>Cleansing and exfoliation calibrated to what we found — never a fixed strength across every client.</p>
+    </div>
+    <div class="ritual-step">
+      <svg class="phase-icon" viewBox="0 0 40 40"><path d="M20 4a16 16 0 010 32 11 11 0 000-32z" fill="#4A3F38"/></svg>
+      <h4>Restore</h4>
+      <p>Active serums and massage go in while the skin is most receptive, right after clearing.</p>
+    </div>
+    <div class="ritual-step">
+      <svg class="phase-icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="#4A3F38"/></svg>
+      <h4>Seal</h4>
+      <p>A cold finish locks everything in, and you leave with a short plan for the next two weeks.</p>
+    </div>
+  </div>
+</section>
+
+<section id="press">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Word of mouth</span>
+      <h2 class="display">People who've sat in the chair.</h2>
+    </div>
+    <p>&nbsp;</p>
+  </div>
+  <div class="press-strip">
+    <div class="press-quote">
+      <p>"First place that's ever asked what my skin needed instead of what treatment they wanted to sell me."</p>
+      <span>— Nadia, regular client</span>
+    </div>
+    <div class="press-quote">
+      <p>"The Long Reset is genuinely the most relaxed I've been in months. Worth blocking the afternoon for."</p>
+      <span>— Ishara, regular client</span>
+    </div>
+    <div class="press-quote">
+      <p>"My brows have never grown in this evenly since I started going to Lunaria."</p>
+      <span>— Dilki, regular client</span>
+    </div>
+  </div>
+</section>
+
+<div class="cta-wrap">
+<section class="cta-section" id="contact">
+  <span class="eyebrow" style="color:#FDFBF7; opacity:0.85;">Visit the studio</span>
+  <h2>Your glow has a start date. Let's set it.</h2>
+  <a href="#" class="btn">Book an Appointment</a>
+</section>
+</div>
+
+<footer>
+  <div>© 2026 Lunaria Beauty Studio.</div>
+  <div class="foot-links">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Directions</a>
+  </div>
+</footer>
+
+</body>
+</html>

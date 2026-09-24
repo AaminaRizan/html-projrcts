@@ -1,0 +1,4 @@
+The visible white wedge was NOT the root-level Blender Plane.
+Each can's metal mesh (Cylinder.001) contained a second hidden 2-triangle 2x2 flat square at local Y=-1.405135.
+Those two triangles were physically degenerated in every GLB so they cannot render.
+The separate root Plane is still removed by hero.js before render.

@@ -1,0 +1,8 @@
+CRUSH condensation fix
+
+- The GLB `Plane` mesh is removed completely at load time.
+- The Plane is a 4-vertex 2x2 horizontal sheet at the GLB root, so it cannot become can-surface droplets directly without deforming/wrapping it.
+- Its `water` material is used only as a visual reference/source for maps.
+- 330 small 3D droplets are generated in code and parented to the actual `can` node, so they move/tilt/spin with the can.
+- No replacement floor plane or puddle is rendered in this version.
+- Main edited file: hero.js
