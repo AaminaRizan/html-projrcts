@@ -102,7 +102,7 @@
 
   $("[data-brands]").innerHTML = brands.map(b =>
     `<button class="chip" type="button" aria-pressed="${b === "All"}" data-brand="${esc(b)}">${esc(b)}</button>`).join("");
-  if (brands.length <= 2) $("[data-brands]").hidden = true;   // one brand: no need for chips
+  if (brands.length <= 2) $("[data-brands]").hidden = false;   // one brand: no need for chips
   $("[data-brands]").addEventListener("click", e => {
     const b = e.target.closest("[data-brand]");
     if (!b) return;

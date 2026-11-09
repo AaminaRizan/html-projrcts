@@ -5,36 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vesper — Fine watches, honestly described</title>
   <meta name="description" content="Fine watches from the great houses, each sold with its own file: condition, papers and history.">
-  <meta name="theme-color" content="#0B0E13">
+  <meta name="theme-color" content="#081221">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>try { if (sessionStorage.getItem('vesper:intro-seen') !== '1' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash.startsWith('#lot-')) document.documentElement.classList.add('vesper-intro-pending'); } catch(e) { document.documentElement.classList.add('vesper-intro-pending'); }</script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="magazine-v9.css">
+  <link rel="stylesheet" href="editorial-v10.css">
+  <link rel="stylesheet" href="vesper-v11.css">
+  <link rel="stylesheet" href="vesper-v13.css">
+  <link rel="stylesheet" href="intro-v14.css">
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
-  <div class="vesper-intro" data-intro aria-label="Entering Vesper">
+  <div class="vesper-intro" data-intro aria-label="Entering Vesper" role="group">
     <div class="intro__center">
-      <svg class="intro__dial" viewBox="0 0 280 280" role="img" aria-label="A watch dial, its hand pointing to twelve">
-        <defs><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76818b"/><stop offset=".35" stop-color="#f0f1ef"/><stop offset=".68" stop-color="#606970"/><stop offset="1" stop-color="#c8d0d5"/></linearGradient></defs>
-        <circle cx="140" cy="140" r="125" fill="none" stroke="url(#metal)" stroke-width="2"/>
-        <circle cx="140" cy="140" r="116" fill="#121618" stroke="#383e42" stroke-width="1"/>
+      <svg class="intro__dial" viewBox="0 0 280 280" role="img" aria-label="Minimal silver watch dial with a moving hand">
+        <defs><linearGradient id="intro-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#596c7d"/><stop offset=".35" stop-color="#f6e3d8"/><stop offset=".68" stop-color="#7b91a4"/><stop offset="1" stop-color="#e1bdaf"/></linearGradient></defs>
+        <circle cx="140" cy="140" r="125" fill="none" stroke="url(#intro-metal)" stroke-width="2"/>
+        <circle cx="140" cy="140" r="116" fill="#0e1d33" stroke="#435268" stroke-width="1"/>
         <g data-dial-markers></g>
-        <g class="intro__minute"><path d="M140 153 L140 67" stroke="url(#metal)" stroke-width="6" stroke-linecap="round"/></g>
-        <g class="intro__hour"><path d="M140 150 L140 98" stroke="url(#metal)" stroke-width="9" stroke-linecap="round"/></g>
-        <g class="intro__second" data-second-hand><path d="M140 166 L140 48" stroke="#d8e1e5" stroke-width="2" stroke-linecap="round"/></g>
-        <circle cx="140" cy="140" r="6" fill="url(#metal)"/>
+        <g class="intro__minute"><path d="M140 153 L140 66" stroke="url(#intro-metal)" stroke-width="6" stroke-linecap="round"/></g>
+        <g class="intro__hour"><path d="M140 150 L140 96" stroke="url(#intro-metal)" stroke-width="9" stroke-linecap="round"/></g>
+        <g class="intro__second" data-second-hand><path d="M140 166 L140 47" stroke="#f7e4dc" stroke-width="2" stroke-linecap="round"/></g>
+        <circle cx="140" cy="140" r="6" fill="url(#intro-metal)"/>
       </svg>
       <p class="intro__label">VESPER <span>—</span> TIME, CONSIDERED.</p>
     </div>
     <button type="button" class="intro__skip" data-skip-intro>Skip intro ↗</button>
   </div>
   <div class="site-reveal" data-site-reveal>
+
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="nav">
     <a class="wordmark silver" href="#top" data-shop-name>VESPER</a>
     <nav class="nav__links" aria-label="Primary" id="primary-nav">
+      <a href="#showcase">The edit</a>
       <a href="#tray">Collection</a>
       <a href="#story">Our approach</a>
       <a href="#method">The standard</a>
@@ -48,63 +56,106 @@
     <!-- ============ CINEMATIC SHOWROOM HERO ============ -->
     <section class="hero hero--cinema" id="top" aria-labelledby="hero-title">
       <div class="hero__cinema" aria-hidden="true">
-        <img class="hero__campaign is-active" src="photos/Moody Green Dial Chronograph Watch.png" alt="" data-hero-campaign>
+        <img class="hero__campaign is-active" src="photos/vesper-roadster-hero.webp" alt="" data-hero-campaign>
         <div class="hero__shade"></div>
         <span class="hero__ghost">VESPER</span>
       </div>
       <div class="hero__copy">
-        <h1 id="hero-title">Time,<br><span>considered.</span></h1>
-        <p class="lead">Exceptional watches. Carefully selected, honestly presented, made to be explored.</p>
+        <h1 id="hero-title">Moments<br><span>worth keeping.</span></h1>
+        <p class="lead">A considered collection of timepieces for the moments that stay with you.</p>
         <div class="hero__actions">
           <a class="btn btn--ivory" href="#tray">Explore collection <span aria-hidden="true">↗</span></a>
           <button class="hero__text-link" type="button" data-hero-open>Inspect this piece <span aria-hidden="true">↗</span></button>
         </div>
       </div>
       <div class="hero__piece">
-        <button class="hero__watch" type="button" data-hero aria-label="Inspect featured watch"></button>
+        <button class="hero__watch" type="button" data-hero aria-label="Inspect featured watch" tabindex="-1"></button>
         <p class="hero__caption mono" data-hero-caption></p>
       </div>
     </section>
 
-    <!-- ============ EDITORIAL STATEMENT ============ -->
-    <section class="manifesto reveal" id="story" aria-labelledby="story-title">
-      <div class="manifesto__label mono">01 / THE PHILOSOPHY</div>
-      <div class="manifesto__body">
-        <p class="manifesto__kicker mono">THE VESPER EDIT</p>
-        <h2 id="story-title">Considered pieces.<br>Enduring presence.</h2>
-        <p>A watch is both a personal object and an expression of design. We bring the collection closer, one considered detail at a time.</p>
-        <a class="editorial-link" href="#method">Explore our approach <span aria-hidden="true">↗</span></a>
+    <!-- ============ VESPER MAGAZINE / OFFSET TRIPTYCH ============ -->
+    <section class="slices-showcase" id="showcase" aria-labelledby="showcase-title">
+      <div class="magazine-heading">
+        <p class="magazine-heading__edition">VESPER JOURNAL <span>— ISSUE 001 / 2026</span></p>
+        <h2 id="showcase-title">THE ART OF <span>TIME.</span></h2>
+        <p class="magazine-heading__deck">A curated study in colour, craftsmanship and character.</p>
       </div>
+      <div class="magazine-layout">
+        <aside class="magazine-aside" aria-label="Editorial introduction">
+          <span class="magazine-aside__issue">01—03</span>
+          <p>THE EDITOR’S SELECTION</p>
+          <strong>Not just worn.<br>Remembered.</strong>
+          <span class="magazine-aside__rule"></span>
+          <small>GREEN / BLUE / BLACK<br>THREE DISTINCT CHARACTERS</small>
+        </aside>
+        <div class="slices-composition" data-showcase-stage aria-label="Three-piece editorial collage. Hover or tap a vertical panel to select a watch">
+          <div class="slice-set is-current" data-set="0" aria-hidden="false"><img src="photos/showcase/emerald-1-left.jpg" alt="" draggable="false"><img src="photos/showcase/emerald-2-middle.jpg" alt="" draggable="false"><img src="photos/showcase/emerald-3-right.jpg" alt="" draggable="false"></div>
+          <div class="slice-set" data-set="1" aria-hidden="true"><img src="photos/showcase/ocean-1-left.jpg" alt="" draggable="false"><img src="photos/showcase/ocean-2-middle.jpg" alt="" draggable="false"><img src="photos/showcase/ocean-3-right.jpg" alt="" draggable="false"></div>
+          <div class="slice-set" data-set="2" aria-hidden="true"><img src="photos/showcase/crimson-1-left.jpg" alt="" draggable="false"><img src="photos/showcase/crimson-2-middle.jpg" alt="" draggable="false"><img src="photos/showcase/crimson-3-right.jpg" alt="" draggable="false"></div>
+          <div class="magazine-hotspots" role="group" aria-label="Choose a featured watch">
+            <button type="button" data-showcase-choice="0" aria-label="Show Emerald Chrono XL" aria-pressed="true"><span>01 / EMERALD</span></button>
+            <button type="button" data-showcase-choice="1" aria-label="Show Ocean Seastar 1000" aria-pressed="false"><span>02 / OCEAN</span></button>
+            <button type="button" data-showcase-choice="2" aria-label="Show Crimson Supersport" aria-pressed="false"><span>03 / CRIMSON</span></button>
+          </div>
+        </div>
+        <aside class="magazine-aside magazine-aside--right" aria-label="Current edition">
+          <span class="magazine-aside__vertical">CURATED TIMEPIECES</span>
+          <p>NOW SHOWING</p>
+          <strong data-magazine-name>Emerald<br>Chrono XL</strong>
+          <small data-magazine-copy>A green sunray dial. An unmistakable presence.</small>
+          <button type="button" class="magazine-aside__explore" data-showcase-explore>Discover this piece ↗</button>
+          <span class="magazine-aside__folio" data-showcase-counter>01 / 03</span>
+        </aside>
+      </div>
+      
+    </section>
+
+    <!-- ============ PHILOSOPHY ============ -->
+    <section class="manifesto stack-card reveal" id="story" aria-labelledby="story-title">
+      <div class="manifesto__label mono">THE VESPER PHILOSOPHY</div>
+      <div class="manifesto__body"><p class="manifesto__kicker mono">PERSONAL BY DESIGN</p><h2 id="story-title">Less noise.<br>More meaning.</h2><p>A great watch doesn't demand attention. It earns it, through proportions, materials and the details you notice over time.</p><a class="editorial-link" href="#tray">Discover the edit ↗</a></div>
       <div class="manifesto__number" aria-hidden="true">V / 01</div>
     </section>
 
-    <!-- ============ FEATURED EDITORIAL ============ -->
-    <section class="feature reveal" aria-labelledby="feature-title">
-      <div class="feature__photo"><img src="photos/Emerald Green Stainless Steel Chronograph (1).png" alt="Campaign concept featuring a green-dial stainless-steel chronograph" loading="lazy"></div>
-      <div class="feature__copy">
-        <p class="eyebrow mono">02 / CURRENT OBSESSION</p>
-        <h2 id="feature-title">Closer to<br>the details.</h2>
-        <p>A vivid emerald dial, reflective steel and meticulous finishing. An intimate look at the features that give a timepiece its character.</p>
-        <a class="editorial-link" href="#tray">Discover the watches <span aria-hidden="true">↗</span></a>
-        <span class="feature__watermark mono" aria-hidden="true">STEEL / DETAIL / CHARACTER</span>
+    <!-- 2D animated exploded-view study: genuine source imagery, separated visual regions. -->
+    <section class="anatomy stack-card" id="details" data-anatomy aria-labelledby="details-title">
+      <div class="anatomy__header">
+        <div><p class="anatomy__eyebrow">THE DETAILS / UP CLOSE</p><h2 id="details-title">Look a little closer.</h2></div>
+        <p>Every detail has its place. Explore the architecture of a timepiece.</p>
+      </div>
+      <div class="anatomy__body">
+        <div class="anatomy__viewport" aria-label="Two-dimensional watch component animation">
+          <div class="anatomy__assembly" data-anatomy-assembly>
+            <img class="anatomy__layer anatomy__layer--top" src="photos/explode-upper-bracelet.webp" alt="" aria-hidden="true">
+            <img class="anatomy__layer anatomy__layer--bottom" src="photos/explode-lower-bracelet.webp" alt="" aria-hidden="true">
+            <img class="anatomy__layer anatomy__layer--case" src="photos/explode-case-crown.webp" alt="" aria-hidden="true">
+            <img class="anatomy__layer anatomy__layer--dial" src="photos/explode-dial-hands.webp" alt="" aria-hidden="true">
+            <span class="anatomy__crystal" aria-hidden="true"></span>
+          </div>
+          <span class="anatomy__marker anatomy__marker--crystal" aria-hidden="true">Crystal</span>
+          <span class="anatomy__marker anatomy__marker--dial" aria-hidden="true">Dial &amp; hands</span>
+          <span class="anatomy__marker anatomy__marker--bracelet" aria-hidden="true">Steel bracelet</span>
+        </div>
+        <div class="anatomy__toolbar">
+          <div class="anatomy__toolbar-copy"><span class="anatomy__number">VESPER / OBJECT STUDY 001</span><strong>Precision, piece by piece.</strong></div>
+          <div class="anatomy__buttons">
+            <button class="anatomy__button" type="button" data-anatomy-separate>Separate ↗</button>
+            <button class="anatomy__button anatomy__button--ghost" type="button" data-anatomy-reassemble>Reassemble ↙</button>
+            <button class="anatomy__button anatomy__button--ghost" type="button" data-anatomy-replay>Replay ↻</button>
+          </div>
+          <div class="anatomy__scrubber">
+            <label for="anatomy-range" class="anatomy__number">LAYERS — <span data-anatomy-status aria-live="polite">Assembled</span></label>
+            <input class="anatomy__range" id="anatomy-range" data-anatomy-range type="range" min="0" max="100" value="0" step="1" aria-label="Separate watch visual layers">
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="detail-essay" id="details" aria-labelledby="details-title">
-      <div class="detail-essay__heading reveal"><p class="eyebrow">03 / INSIDE THE DETAIL</p><h2 id="details-title">Look a little closer.</h2><p>Six original product photographs showing the silver-dial timepiece from every angle — its face, case, bracelet, and reverse.</p></div>
-      <div class="detail-essay__stage">
-        <div class="detail-essay__photo" role="region" aria-label="Original watch photo gallery" aria-live="polite"><img src="photos/18fe6ae6-4a29-4dc0-8d65-cc1778fe42e7_T165-807-11-031-00_shadow.webp" alt="Silver-dial Tissot wristwatch, original front product image" data-detail-image loading="lazy"></div>
-        <div class="detail-essay__control"><span class="detail-essay__index" data-detail-index>01 / 06</span><h3 data-detail-heading>Face and dial</h3><p data-detail-copy>Front view of the silver dial and polished stainless-steel bracelet.</p><div class="detail-essay__nav"><button type="button" data-detail-prev aria-label="Previous detail">←</button><button type="button" data-detail-next aria-label="Next detail">→</button></div></div>
-      </div>
-      <p class="detail-essay__foot">Original supplied product views of the silver-dial Tissot. These images document a different model from the featured green Chrono XL; refer to the matching listing to confirm reference and condition.</p>
-    </section>
-    <section class="lifestyle reveal" aria-labelledby="lifestyle-title">
-      <div class="lifestyle__image"><img src="photos/Emerald Chronograph in Shadow-1.png" loading="lazy" alt="Editorial view of a stainless-steel wristwatch worn with dark clothing"></div>
-      <div class="lifestyle__text"><p class="eyebrow">THE EVERYDAY EDIT</p><h2 id="lifestyle-title">Made for<br>your moments.</h2><p>From quiet mornings to evenings worth remembering, a good watch feels at home wherever you are.</p><a class="editorial-link" href="#tray">Find yours ↗</a></div>
-    </section>
+    <section class="lifestyle stack-card reveal" aria-labelledby="lifestyle-title"><div class="lifestyle__image"><img src="photos/vesper-roadster-hero.webp" loading="lazy" alt="Stainless steel chronograph worn casually beside a midnight-blue vintage roadster"></div><div class="lifestyle__text"><p class="eyebrow">THE EVERYDAY EDIT</p><h2 id="lifestyle-title">Every hour<br>has a story.</h2><p>Considered design for unplanned afternoons, long journeys and everything in between.</p><a class="editorial-link" href="#tray">Find your watch ↗</a></div></section>
 
     <!-- ============ THE TRAY (to scale) ============ -->
-    <section class="tray-section" id="tray" aria-labelledby="tray-title">
+    <section class="tray-section stack-card" id="tray" aria-labelledby="tray-title">
       <div class="section-head grid">
         <div class="section-head__title">
           <p class="eyebrow mono">04 / THE COLLECTION · <span data-count>0</span> PIECES</p>
@@ -113,7 +164,7 @@
         <p class="section-head__text">An intimate selection, not an endless catalogue. Explore every watch, examine the dial, and see true proportions before arranging a viewing.</p>
       </div>
 
-      <div class="filters grid" role="toolbar" aria-label="Filter and sort">
+      <div class="filters collection-toolbar" role="toolbar" aria-label="Filter and sort">
         <div class="chips" data-brands></div>
         <label class="search-watch"><span class="sr-only">Search watches</span><input data-search type="search" placeholder="Search collection / model / reference" autocomplete="off"></label>
         <label class="sort mono">
@@ -133,14 +184,14 @@
       </div>
     </section>
 
-    <section class="interlude reveal" aria-label="Vesper brand statement">
+    <section class="interlude stack-card reveal" aria-label="Vesper brand statement">
       <p class="eyebrow mono">AN OBJECT. A STORY. A LIFETIME.</p>
       <p>The details make<br>the difference.</p>
       <a href="#visit" class="editorial-link">Arrange a private viewing <span aria-hidden="true">↗</span></a>
     </section>
 
     <!-- ============ METHOD ============ -->
-    <section class="method grid" id="method" aria-labelledby="method-title">
+    <section class="method stack-card grid" id="method" aria-labelledby="method-title">
       <div class="method__head">
         <p class="eyebrow mono">05 / OUR STANDARD</p>
         <h2 id="method-title">Clarity is our standard.</h2>
@@ -172,7 +223,7 @@
     </section>
 
     <!-- ============ ARCHIVE ============ -->
-    <section class="archive grid" id="archive" aria-labelledby="archive-title">
+    <section class="archive stack-card grid" id="archive" aria-labelledby="archive-title">
       <div class="archive__head">
         <p class="eyebrow mono">Archive</p>
         <h2 id="archive-title">Found new <em>homes.</em></h2>
@@ -181,7 +232,7 @@
     </section>
 
     <!-- ============ VISIT ============ -->
-    <section class="visit grid" id="visit" aria-labelledby="visit-title">
+    <section class="visit stack-card grid" id="visit" aria-labelledby="visit-title">
       <div class="visit__head">
         <p class="eyebrow mono">06 / PERSONAL SERVICE</p>
         <h2 id="visit-title">See it in your <em>hand</em> first.</h2>
@@ -205,7 +256,7 @@
     <p class="footer__note mono">© <span data-year>2026</span> · <span data-shop-name>VESPER</span></p>
   </footer>
 
-  </div><!-- /site-reveal -->
+
   <dialog class="shortlist" data-shortlist aria-labelledby="shortlist-title">
     <div class="shortlist__head"><div><p class="eyebrow mono">YOUR PRIVATE EDIT</p><h2 id="shortlist-title">Saved <em>pieces.</em></h2></div><button class="file__close mono" type="button" data-close-shortlist>Close</button></div>
     <div class="shortlist__list" data-shortlist-list></div>
@@ -271,9 +322,14 @@
     </div>
   </dialog>
 
+  </div><!-- /site-reveal -->
+
   <script src="stock.js"></script>
   <script src="script.js"></script>
   <script src="experience.js"></script>
+
+  <script src="showcase-v9.js"></script>
+  <script src="anatomy.js"></script>
   <script src="showroom.js"></script>
 </body>
 </html>

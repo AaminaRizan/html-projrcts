@@ -1,0 +1,1 @@
+VESPER V13 — Collection layout rebuilt. Open index.html; the collection toolbar remains functional (filter/search/sort). The display watch image sizing is for editorial presentation; use the product file true-size viewer for dimensional reference. Check stock.js before publishing any sales claims.

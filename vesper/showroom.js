@@ -25,7 +25,11 @@
   const later=(f,ms)=>{const t=setTimeout(f,ms);timers.push(t);return t;};
   // The homepage is the circular reveal layer, ABOVE the dark intro backdrop.
   // This creates a visible growing window into the real page, not a fade hiding the effect.
+  let cleaned=false;
   function cleanUp(){
+    if(cleaned) return;
+    cleaned=true;
+    document.documentElement.classList.remove('vesper-intro-pending');
     site.classList.remove('site-reveal--opening');
     site.style.clipPath='';
     intro?.remove();
@@ -71,30 +75,4 @@
   // Hero stays focused on the featured Chrono XL. The removed carousel has no hidden controls.
   $('[data-hero-open]')?.addEventListener('click',()=>document.querySelector('[data-hero]')?.click());
 
-  // Six original image files of the SAME silver-dial T165 watch.
-  // No AI campaign crops, no photos of another model in this gallery.
-  const details=[
-    {src:'photos/18fe6ae6-4a29-4dc0-8d65-cc1778fe42e7_T165-807-11-031-00_shadow.webp',title:'Face and dial',copy:'A clear, original front view of the silver sunray dial and steel bracelet.'},
-    {src:'photos/12c575c7-63db-45a2-ae88-c6c508d803e1_T165-807-11-031-00_DETAIL-1.webp',title:'Angled profile',copy:'The same watch from three-quarters, showing its case shape and polished crown.'},
-    {src:'photos/6b4b0080-be96-4b53-8c2c-f77f7a4262d8_T165-807-11-031-00_PROFIL.webp',title:'Case thickness',copy:'Side-on product view showing the profile and case thickness.'},
-    {src:'photos/6853ef90-43a8-4a32-a9ed-c2c19d94be48_T605-052-046_ZOOM.png',title:'Steel bracelet',copy:'Original close detail of the stainless-steel bracelet and links.'},
-    {src:'photos/e1117cc6-8547-46d1-bcde-6483c651b190_T165-807-11-031-00_DETAIL-2.png',title:'Caseback and movement',copy:'The reverse of the same watch, showing its exhibition caseback.'},
-    {src:'photos/ec886d8a-dbc7-4550-a886-63dd99111bd0_T165-807-11-031-00_WRIST.webp',title:'On the wrist',copy:'Original wrist photograph for judging the timepiece’s proportions.'}
-  ];
-  details.forEach(d=>{const preload=new Image();preload.src=d.src;});
-  const img=$('[data-detail-image]');
-  let di=0;
-  function changeDetail(d){
-    di=(d+details.length)%details.length;
-    const o=details[di];
-    img.style.opacity='0';img.style.transform='scale(1.045)';
-    later(()=>{img.src=o.src;img.alt=`Silver-dial Tissot — ${o.title}`;img.style.opacity='1';img.style.transform='scale(1)'},190);
-    $('[data-detail-index]').textContent=`0${di+1} / 0${details.length}`;
-    $('[data-detail-heading]').textContent=o.title;
-    $('[data-detail-copy]').textContent=o.copy;
-  }
-  $('[data-detail-prev]')?.addEventListener('click',()=>changeDetail(di-1));
-  $('[data-detail-next]')?.addEventListener('click',()=>changeDetail(di+1));
-  const detailStage=$('.detail-essay__stage');
-  detailStage?.addEventListener('keydown',e=>{if(e.key==='ArrowRight')changeDetail(di+1);if(e.key==='ArrowLeft')changeDetail(di-1);});
 })();
