@@ -1,1 +1,0 @@
-VESPER V14 — V13 collection layout preserved. Restored centred silver watch dial intro with hand sweeping to 12 and page-opening circular reveal. Full intro plays once per browser session; Skip intro and reduced motion supported. Open index.html. To replay, open a new private window or clear sessionStorage key vesper:intro-seen.
